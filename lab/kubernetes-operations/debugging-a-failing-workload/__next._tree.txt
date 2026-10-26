@@ -1,0 +1,9 @@
+:HL["/sre-lab/_next/static/chunks/1kyu0-1b-mbqc.css","style"]
+:HL["/sre-lab/_next/static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/sre-lab/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/sre-lab/_next/static/chunks/42x_0tvgvtycd.css","style"]
+4:[["children",{"s":"__PAGE__","h":160}]]
+3:[["children",{"s":{"n":"lesson","t":"d","k":"debugging-a-failing-workload","s":[]},"h":96,"c":"$Q4"}]]
+2:[["children",{"s":{"n":"course","t":"d","k":"kubernetes-operations","s":[]},"h":96,"c":"$Q3"}]]
+1:[["children",{"s":"lab","h":96,"c":"$Q2"}]]
+0:{"b":"YNHPsUbOZ3TfRkLu_zklS","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

@@ -1,0 +1,381 @@
+{
+  "probedAt": "2026-10-17T14:34:18.605Z",
+  "image": "buildroot-bzimage68.bin",
+  "cmdline": "console=ttyS0",
+  "note": "Labs may only use commands in `available`. `stat` is absent from this BusyBox build, and there is no upstream network, so `ping` never succeeds here — grade state, not reachability.",
+  "available": [
+    "addgroup",
+    "adduser",
+    "arp",
+    "awk",
+    "base64",
+    "basename",
+    "bc",
+    "chmod",
+    "chown",
+    "cp",
+    "crond",
+    "crontab",
+    "curl",
+    "cut",
+    "date",
+    "dd",
+    "delgroup",
+    "deluser",
+    "df",
+    "diff",
+    "dirname",
+    "dmesg",
+    "du",
+    "env",
+    "expr",
+    "find",
+    "free",
+    "grep",
+    "gzip",
+    "head",
+    "hostname",
+    "id",
+    "ifconfig",
+    "install",
+    "ip",
+    "jobs",
+    "kill",
+    "killall",
+    "less",
+    "ln",
+    "logger",
+    "ls",
+    "md5sum",
+    "mkdir",
+    "mktemp",
+    "more",
+    "mount",
+    "mv",
+    "netstat",
+    "nohup",
+    "nologin",
+    "nslookup",
+    "od",
+    "passwd",
+    "patch",
+    "pidof",
+    "ping",
+    "printf",
+    "ps",
+    "readlink",
+    "realpath",
+    "rm",
+    "route",
+    "sed",
+    "seq",
+    "sleep",
+    "sort",
+    "stty",
+    "su",
+    "swapoff",
+    "sync",
+    "syslogd",
+    "tail",
+    "tar",
+    "tee",
+    "test",
+    "top",
+    "touch",
+    "tr",
+    "ulimit",
+    "umount",
+    "uname",
+    "uniq",
+    "uptime",
+    "vi",
+    "watch",
+    "wc",
+    "wget",
+    "which",
+    "whoami",
+    "xargs"
+  ],
+  "unavailable": [
+    "chpasswd",
+    "groups",
+    "httpd",
+    "nano",
+    "nc",
+    "openssl",
+    "perl",
+    "python3",
+    "split",
+    "ss",
+    "ssh",
+    "stat",
+    "sudo",
+    "timeout"
+  ],
+  "probes": [
+    {
+      "name": "ls -l numeric fields",
+      "command": "ls -l /etc/passwd | awk '{print $3, $4}'",
+      "ok": true,
+      "value": "root root"
+    },
+    {
+      "name": "ls -l symbolic mode",
+      "command": "ls -l /etc/passwd | cut -c1-10",
+      "ok": true,
+      "value": "-rw-r--r--"
+    },
+    {
+      "name": "chmod + find -perm",
+      "command": "touch /tmp/p && chmod 640 /tmp/p && find /tmp/p -perm 0640",
+      "ok": true,
+      "value": "/tmp/p"
+    },
+    {
+      "name": "find -perm wrong mode",
+      "command": "find /tmp/p -perm 0777 | wc -l",
+      "ok": true,
+      "value": "0"
+    },
+    {
+      "name": "find -maxdepth",
+      "command": "mkdir -p /tmp/a/b && touch /tmp/a/f && find /tmp/a -maxdepth 1 -name f | wc -l",
+      "ok": true,
+      "value": "1"
+    },
+    {
+      "name": "find -type/-name count",
+      "command": "touch /tmp/a/x.log /tmp/a/y.log && find /tmp/a -name '*.log' | wc -l",
+      "ok": true,
+      "value": "2"
+    },
+    {
+      "name": "identity",
+      "command": "id",
+      "ok": true,
+      "value": "uid=0(root) gid=0(root)"
+    },
+    {
+      "name": "grep -q exit status",
+      "command": "echo abc | grep -q b && echo FOUND",
+      "ok": true,
+      "value": "FOUND"
+    },
+    {
+      "name": "grep -c",
+      "command": "grep -c root /etc/passwd",
+      "ok": true,
+      "value": "1"
+    },
+    {
+      "name": "sed in-place",
+      "command": "printf 'a=1\\n' > /tmp/s && sed -i 's/a=1/a=2/' /tmp/s && cat /tmp/s",
+      "ok": true,
+      "value": "a=2"
+    },
+    {
+      "name": "awk column",
+      "command": "printf 'x:y:z\\n' | awk -F: '{print $2}'",
+      "ok": true,
+      "value": "y"
+    },
+    {
+      "name": "ps + pidof",
+      "command": "sleep 30 & sleep 1; P=$(pidof sleep); echo pid=$P; kill $P 2>/dev/null; echo done",
+      "ok": true,
+      "value": "pid= | done"
+    },
+    {
+      "name": "killall",
+      "command": "sleep 30 & sleep 1; killall sleep; echo killed",
+      "ok": true,
+      "value": "killall: sleep: no process killed | killed"
+    },
+    {
+      "name": "netstat -tln",
+      "command": "netstat -tln | wc -l",
+      "ok": true,
+      "value": "2"
+    },
+    {
+      "name": "adduser -D -H",
+      "command": "adduser -D -H -s /bin/sh labuser 2>&1 | tail -1; id labuser",
+      "ok": true,
+      "value": "uid=1000(labuser) gid=1000(labuser) groups=1000(labuser)"
+    },
+    {
+      "name": "su -c",
+      "command": "su labuser -c whoami",
+      "ok": true,
+      "value": "labuser"
+    },
+    {
+      "name": "crontab needs the spool dir",
+      "command": "mkdir -p /var/spool/cron/crontabs; echo '* * * * * echo hi' | crontab - && crontab -l",
+      "ok": true,
+      "value": "* * * * * echo hi"
+    },
+    {
+      "name": "writable root",
+      "command": "cd / && touch probe.txt && echo WROTE && rm probe.txt",
+      "ok": true,
+      "value": "WROTE"
+    },
+    {
+      "name": "curl present",
+      "command": "curl --version 2>&1 | head -1",
+      "ok": true,
+      "value": "curl 8.7.1 (i686-buildroot-linux-uclibc) libcurl/8.7.1"
+    },
+    {
+      "name": "addgroup + members",
+      "command": "addgroup ops 2>/dev/null; grep '^ops:' /etc/group",
+      "ok": true,
+      "value": "ops:x:1001:"
+    },
+    {
+      "name": "adduser USER GROUP is rejected",
+      "command": "adduser dep ops 2>&1 | head -1; echo rc=$?",
+      "ok": true,
+      "value": "rc=0"
+    },
+    {
+      "name": "/proc mounted",
+      "command": "test -d /proc/1 && echo PROC_OK || echo PROC_MISSING",
+      "ok": true,
+      "value": "PROC_OK"
+    },
+    {
+      "name": "ifconfig -a",
+      "command": "ifconfig -a 2>&1 | head -4",
+      "ok": true,
+      "value": "eth0      Link encap:Ethernet  HWaddr 00:22:15:15:72:65   |           BROADCAST MULTICAST  MTU:1500  Metric:1"
+    },
+    {
+      "name": "route -n",
+      "command": "route -n 2>&1 | head -3",
+      "ok": true,
+      "value": "Kernel IP routing table | Destination     Gateway         Genmask         Flags Metric Ref    Use Iface"
+    },
+    {
+      "name": "httpd applet absent",
+      "command": "command -v httpd || echo absent",
+      "ok": true,
+      "value": "absent"
+    },
+    {
+      "name": "setgid mode render",
+      "command": "mkdir -p /tmp/sg && chmod 2775 /tmp/sg && ls -ld /tmp/sg | cut -c1-10",
+      "ok": true,
+      "value": "drwxrwsr-x"
+    },
+    {
+      "name": "hostname",
+      "command": "hostname",
+      "ok": true,
+      "value": "(none)"
+    },
+    {
+      "name": "ls -1A one column",
+      "command": "mkdir -p /tmp/ls1 && touch /tmp/ls1/.hidden /tmp/ls1/visible && ls -1A /tmp/ls1 | tr '\\n' ' '",
+      "ok": true,
+      "value": ".hidden visible"
+    },
+    {
+      "name": "find -perm -o+w",
+      "command": "touch /tmp/w && chmod 666 /tmp/w && find /tmp/w -perm -o+w | wc -l",
+      "ok": true,
+      "value": "1"
+    },
+    {
+      "name": "grep -cE alternation",
+      "command": "printf 'a\\nb\\n' | grep -cE 'a|b'",
+      "ok": true,
+      "value": "2"
+    },
+    {
+      "name": "id -Gn + tr",
+      "command": "id -Gn root | tr ' ' '\\n' | wc -l",
+      "ok": true,
+      "value": "2"
+    },
+    {
+      "name": "su refuses a nologin account",
+      "command": "addgroup -q svcg 2>/dev/null; adduser -D -H -s /usr/sbin/nologin -G svcg svc 2>/dev/null; su svc -c true >/dev/null 2>&1 && echo allowed || echo refused",
+      "ok": true,
+      "value": "refused"
+    },
+    {
+      "name": "adduser -G sets primary group",
+      "command": "adduser -D -H -s /usr/sbin/nologin -G svcg svc2 2>/dev/null; id -Gn svc2",
+      "ok": true,
+      "value": "id: unknown user svc2"
+    },
+    {
+      "name": "ip link UP flag",
+      "command": "ip link show eth0 | head -1 | grep -c UP || true",
+      "ok": true,
+      "value": "0"
+    },
+    {
+      "name": "ip route default field",
+      "command": "ip route add default via 10.0.2.2; ip route show | awk '$1 == \"default\" {print $3}'",
+      "ok": true,
+      "value": "ip: RTNETLINK answers: Network is unreachable"
+    },
+    {
+      "name": "ip addr flush + link down",
+      "command": "ip addr flush dev eth0; ip link set eth0 down; ip addr show eth0 | awk '/inet /{print $2}' | wc -l",
+      "ok": true,
+      "value": "0"
+    },
+    {
+      "name": "ip addr add + default route",
+      "command": "ip link set eth0 up; ip addr add 10.0.2.15/24 dev eth0; ip route add default via 10.0.2.2; ip addr show eth0 | awk '/inet /{print $2}'; ip route show | awk '$1 == \"default\" {print $3}'",
+      "ok": true,
+      "value": "10.0.2.15/24 | 10.0.2.2"
+    },
+    {
+      "name": "crond -b + pidof",
+      "command": "mkdir -p /var/spool/cron/crontabs; crond -b; sleep 1; pidof crond",
+      "ok": true,
+      "value": "142"
+    },
+    {
+      "name": "crontab install matches source",
+      "command": "printf '* * * * * /bin/true\\n' > /tmp/j.cron; crontab /tmp/j.cron && crontab -l | diff -q - /tmp/j.cron && echo identical",
+      "ok": true,
+      "value": "identical"
+    },
+    {
+      "name": "date word count",
+      "command": "/bin/date | wc -w",
+      "ok": true,
+      "value": "6"
+    },
+    {
+      "name": "awk NF + sort -u",
+      "command": "printf 'a b c\\nd e\\n' | awk '{print NF}' | sort -u | tr '\\n' ' '",
+      "ok": true,
+      "value": "2 3"
+    },
+    {
+      "name": "TERM trap leaves a marker",
+      "command": "printf '%s\\n' '#!/bin/sh' 'echo $$ > /tmp/sp.running' 'trap \"echo graceful $$ > /tmp/sp.shutdown; rm -f /tmp/sp.running; exit 0\" TERM' 'while :; do sleep 1; done' > /tmp/sp.sh; chmod +x /tmp/sp.sh; /tmp/sp.sh & sleep 1; kill -TERM $(cat /tmp/sp.running); sleep 1; cat /tmp/sp.shutdown",
+      "ok": true,
+      "value": "graceful 158"
+    },
+    {
+      "name": "md5sum",
+      "command": "md5sum /etc/passwd | cut -c1-8",
+      "ok": true,
+      "value": "6e06162c"
+    },
+    {
+      "name": "top batch",
+      "command": "top -b -n1 2>/dev/null | head -1",
+      "ok": true,
+      "value": "Mem: 19224K used, 85728K free, 14964K shrd, 0K buff, 14964K cached"
+    }
+  ]
+}

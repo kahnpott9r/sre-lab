@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-10-17T06:57:19.022Z",
+  "files": {
+    "libv86.js": {
+      "size": 359839,
+      "sha256": "1b41074f7a5604f5"
+    },
+    "v86.wasm": {
+      "size": 2007347,
+      "sha256": "2fc5609ae837fcbc"
+    },
+    "v86-fallback.wasm": {
+      "size": 2040034,
+      "sha256": "b51525d7d4d5f23c"
+    },
+    "seabios.bin": {
+      "size": 131072,
+      "sha256": "73e3f359102e3a99"
+    },
+    "vgabios.bin": {
+      "size": 36352,
+      "sha256": "a4bc0d80cc3ca028"
+    },
+    "buildroot-bzimage68.bin": {
+      "size": 10068480,
+      "sha256": "507a759c70ab7a49"
+    }
+  }
+}

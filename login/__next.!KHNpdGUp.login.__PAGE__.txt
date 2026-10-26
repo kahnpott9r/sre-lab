@@ -1,0 +1,33 @@
+3:"$Sreact.fragment"
+4:"/sre-lab/_next/static/chunks/2t9xxgd0z2oc3.js"
+5:"/sre-lab/_next/static/chunks/0b3peuaw1wcqp.js"
+6:I[39756,["$4","$5"],"default"]
+7:I[37457,["$4","$5"],"default"]
+c:"/sre-lab/_next/static/chunks/0jmokg0v4bo5i.js"
+d:"/sre-lab/_next/static/chunks/27mhe3tu8g9vg.js"
+e:"/sre-lab/_next/static/chunks/13mhpu8zaprs5.js"
+f:"/sre-lab/_next/static/chunks/3wblh3qzlooin.js"
+10:"/sre-lab/_next/static/chunks/3j1eydpezb566.js"
+11:I[5014,["$4","$5","$c","$d","$e","$f","$10"],"default"]
+12:I[22016,["$4","$5","$c","$d","$e","$f","$10"],""]
+13:I[97367,["$4","$5"],"OutletBoundary"]
+14:"$Sreact.suspense"
+17:"ViewportBoundary"
+18:I[97367,["$4","$5"],"$17"]
+19:"MetadataBoundary"
+1a:I[97367,["$4","$5"],"$19"]
+9:X
+9:C
+a:X
+b:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$3","c",{"children":[["$","div",null,{"className":"mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-20 sm:px-6","children":["$","div",null,{"className":"max-w-lg rounded-2xl border border-border bg-card p-8 text-center","children":[["$","span",null,{"className":"mx-auto grid size-12 place-items-center rounded-xl border border-border bg-surface text-muted-foreground","children":["$","$L11",null,{"icon":{"name":"database","size":24,"node":[["ellipse",{"cx":"12","cy":"5","rx":"9","ry":"3","key":"msslwz"}],["path",{"d":"M3 5V19A9 3 0 0 0 21 19V5","key":"1wlel7"}],["path",{"d":"M3 12A9 3 0 0 0 21 12","key":"mv7ke4"}]]},"className":"size-6"}]}],["$","h1",null,{"className":"mt-4 text-xl font-semibold tracking-tight","children":"Accounts are turned off"}],["$","p",null,{"className":"mt-3 text-sm leading-relaxed text-muted-foreground","children":["This deployment has no ",["$","code",null,{"className":"font-mono text-primary","children":"DATABASE_URL"}],", so progress is kept in your browser instead. Everything in the courses still works."]}],["$","p",null,{"className":"mt-4 rounded-lg border border-border bg-surface px-4 py-3 text-left font-mono text-xs text-muted-foreground","children":["# in .env.local",["$","br",null,{}],"DATABASE_URL=postgresql://user:pass@host:5432/srelab"]}],["$","div",null,{"className":"mt-6 flex justify-center gap-3","children":[["$","$L12",null,{"href":"/courses","children":"Browse courses","data-slot":"button","className":"inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out disabled:pointer-events-none disabled:opacity-50 active:translate-y-px [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground shadow-[0_0_28px_-10px] shadow-primary/70 hover:bg-primary/90 h-10 px-4 py-2","ref":null}],["$","$L12",null,{"href":"/dashboard","children":"Go to dashboard","data-slot":"button","className":"inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out disabled:pointer-events-none disabled:opacity-50 active:translate-y-px [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border border-input bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2","ref":null}]]}]]}]}],[["$","script","script-0",{"src":"/sre-lab/_next/static/chunks/3j1eydpezb566.js","async":true}]],["$","$L13",null,{"children":["$","$14",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]]}],"p":"$@16","v":null,"s":"$a"}}]]
+2:[["children",{"s":"login","h":64,"d":{"r":["$","$3","c",{"children":[null,["$","$L6",null,{"parallelRouterKey":"children","template":["$","$L7",null,{}]}]]}],"p":"$@8","v":"$9","s":"$a"},"c":"$Qb"}]]
+1:[["children",{"s":"(site)","h":32,"c":"$Q2"}]]
+0:{"t":{"t":{"s":"","h":80,"c":"$Q1"},"h":{"r":["$","$3","h",{"children":[null,["$","$L18",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#f8fafc","media":"(prefers-color-scheme: light)"}],["$","meta","3",{"name":"theme-color","content":"#020617","media":"(prefers-color-scheme: dark)"}],["$","meta","4",{"name":"color-scheme","content":"light dark"}]]}],["$","$L1a",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$14",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Sign in · SRE Lab"}],["$","meta","1",{"name":"description","content":"Sign in to sync your SRE Lab progress across devices."}],["$","meta","2",{"name":"application-name","content":"SRE Lab"}],["$","meta","3",{"property":"og:title","content":"SRE Lab"}],["$","meta","4",{"property":"og:description","content":"A hands-on course in Linux, containers, Kubernetes and reliability engineering — with a real Linux machine running inside your browser for every lab."}],["$","meta","5",{"property":"og:site_name","content":"SRE Lab"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary"}],["$","meta","8",{"name":"twitter:title","content":"SRE Lab"}],["$","meta","9",{"name":"twitter:description","content":"A hands-on course in Linux, containers, Kubernetes and reliability engineering — with a real Linux machine running inside your browser for every lab."}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@1b","v":null,"s":"$a"}},"a":"$@1c","u":"$@1d","b":"YNHPsUbOZ3TfRkLu_zklS"}
+15:null
+1d:true
+a:300
+a:C
+1c:0
+8:"$undefined"
+1b:"$undefined"
+16:"$undefined"
